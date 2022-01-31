@@ -60,9 +60,7 @@ export class ExtendedClient extends Client {
     );
 
     eventFiles.forEach(async (filePath) => {
-      const event: Event<keyof ClientEvents> = await this.importFile(
-        filePath
-      );
+      const event: Event<keyof ClientEvents> = await this.importFile(filePath);
 
       console.log(`[ 시스템 ] 이벤트 ${event.event} 로딩 완료.`);
       this.on(event.event, event.run);

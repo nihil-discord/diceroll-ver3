@@ -1,6 +1,7 @@
 import { MessageEmbed } from 'discord.js';
 import { Command } from '@/structures/Command';
 import { roll } from '@/utils';
+import { configData } from '@/data';
 
 export default new Command({
   name: '주사위_프리셋',
@@ -44,7 +45,7 @@ export default new Command({
 
     let result = diceNumber !== 1
       ? roll(diceNumber)
-      : roll(6, 3, 0);
+      : roll(6, 3, []);
 
     const topString = diceNumber !== 1
       ? `***D${diceNumber}***`
@@ -55,7 +56,7 @@ export default new Command({
       : `***${result.total}*** (${result.arr.join(', ')})`;
 
     const embed = new MessageEmbed()
-      .setColor('#df2323')
+      .setColor(configData.color.red)
       .addField('**[주사위]**', topString)
       .addField('**[결과]**', bottomString);
 
